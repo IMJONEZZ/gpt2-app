@@ -1,8 +1,13 @@
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, render_template
+import os
 import generation
 
 
-app = Flask(__name__)
+app = Flask(__name__, static_url_path='/static')
+
+@app.route('/')
+def render_page():
+    return render_template('index.html')
 
 @app.route('/predict', methods=['POST'])
 def predict():
@@ -12,4 +17,4 @@ def predict():
 
 
 if __name__ == '__main__':
-    app.run(port=3000, debug=True)
+    app.run(port=os.getenv('PORT', 5000), debug=False)
