@@ -1,1 +1,1 @@
-web: voila --port=$PORT --no-browser GPT_2_Heroku.ipynb
+web: flask --port=$PORT --no-browser app.py
