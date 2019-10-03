@@ -12,9 +12,10 @@ def home():
 @app.route('/', methods=['POST'])
 def predict():
     assert request.method == 'POST'
-    data = request.get_json()
+    data = request.form['text']
     text = generation.main(model_type='gpt2', model_name_or_path='gpt2', prompt=str(data))
-    return jsonify(text)
+    out = str(data) + ' ' + str(text)
+    return render_template('index.html', text=out)
     
 if __name__ == '__main__':
     app.run(port=os.getenv('PORT', 5000), debug=False)
