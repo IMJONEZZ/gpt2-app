@@ -96,8 +96,7 @@ def main(model_type, model_name_or_path, prompt):
     temperature = 1.0
     top_k = 0
     top_p = 0.9
-    seed = 42
-
+    
     model_type = model_type.lower()
     model_class, tokenizer_class = MODEL_CLASSES[model_type]
     tokenizer = tokenizer_class.from_pretrained(model_name_or_path)

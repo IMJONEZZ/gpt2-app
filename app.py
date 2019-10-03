@@ -5,15 +5,11 @@ import generation
 
 app = Flask(__name__, static_url_path='/static')
 
-@app.route('/')
+@app.route('/', methods=['POST'])
 def render_page():
-    return render_template('index.html')
-
-@app.route('/predict', methods=['POST'])
-def predict():
     data = request.get_json()
     text = generation.main(model_type='gpt2', model_name_or_path='gpt2', prompt=str(data))
-    return jsonify(text)
+    return render_template('index.html', text=jsonify(text))
 
 
 if __name__ == '__main__':
