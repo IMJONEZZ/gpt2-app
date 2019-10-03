@@ -1,1 +1,1 @@
-web: flask --port=$PORT --no-browser app.py
+web: gunicorn app:app --log-level debug
