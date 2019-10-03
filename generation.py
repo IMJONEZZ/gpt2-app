@@ -88,15 +88,16 @@ def sample_sequence(model, length, context, num_samples=1, temperature=1, top_k=
             generated = torch.cat((generated, next_token.unsqueeze(0)), dim=1)
     return generated
 
-def main(model_type, model_name_or_path, prompt):
+def main(model_type, model_name_or_path, prompt, length):
     if torch.cuda.is_available():
         device = 'cuda'
     else:
         device = 'cpu'
-    length = 100
     temperature = 1.0
     top_k = 0
     top_p = 0.9
+    if not length:
+        length = 50
     
     model_type = model_type.lower()
     model_class, tokenizer_class = MODEL_CLASSES[model_type]

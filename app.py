@@ -12,9 +12,13 @@ def home():
 @app.route('/', methods=['POST'])
 def predict():
     assert request.method == 'POST'
-    data = request.form['text']
-    text = generation.main(model_type='gpt2', model_name_or_path='gpt2', prompt=str(data))
-    out = str(data) + ' ' + str(text)
+    words = request.form['text']
+    number = int(request.form['number'])
+    text = generation.main(model_type='gpt2', 
+                        model_name_or_path='gpt2', 
+                        prompt=str(words), 
+                        length=number)
+    out = str(words) + ' ' + str(text)
     return render_template('index.html', text=out)
     
 if __name__ == '__main__':
