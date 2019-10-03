@@ -1,5 +1,5 @@
 tqdm
 torch
-numpy
 transformers
 flask
+jinja2
