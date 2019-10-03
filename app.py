@@ -13,7 +13,7 @@ def render_page():
 def predict():
     data = request.get_json()
     text = generation.main(model_type='gpt2', model_name_or_path='gpt2', prompt=str(data))
-    return text
+    return jsonify(text)
 
 
 if __name__ == '__main__':
